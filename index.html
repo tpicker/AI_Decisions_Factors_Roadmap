@@ -5,53 +5,117 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI Development Decision Roadmaps</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#17324d;background:#f4f7fb}.wrap{max-width:1200px;margin:0 auto;padding:20px}.hero{background:#12385f;color:#fff;border-radius:14px;padding:22px 24px}.hero h1{margin:0 0 8px;font-size:30px}.hero p{margin:0;line-height:1.5;color:#e8f0f8}.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:15px 0}.toolbar button{border:1px solid #b8c7d6;background:#fff;color:#17324d;border-radius:8px;padding:10px 14px;font-weight:700;cursor:pointer}.toolbar button.active{background:#173d68;color:#fff}.spacer{flex:1}.content{background:#fff;border:1px solid #d7e1ea;border-radius:14px;padding:20px}.sub{color:#53687b}.roadmap{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.factor{background:#f7fbfe;border:2px solid #c8d7e5;border-radius:12px;padding:12px;min-height:145px}.factor h3{margin:0 0 12px;font-size:14px;line-height:1.25;color:#21476e}.factor label{display:block;font-size:12px;font-weight:700;margin-bottom:5px}.factor select{width:100%;padding:9px;border:1px solid #aebfce;border-radius:7px;background:#fff;color:#162b40;font-size:14px}.factor .note{margin-top:8px;font-size:11px;color:#617486}.decision{margin-top:22px;border:1px solid #cbd9e5;border-radius:12px;overflow:hidden}.decision h2{margin:0;padding:12px 16px;background:#12385f;color:#fff;font-size:17px}.fields{padding:16px;background:#fff}.field{margin-bottom:14px}.field:last-child{margin-bottom:0}.field label{display:block;font-weight:700;font-size:14px;margin-bottom:6px}.field textarea{width:100%;min-height:96px;padding:11px;border:1px solid #aebfce;border-radius:8px;background:#fff;color:#172b40;font:inherit;resize:vertical}.field textarea:focus,.factor select:focus{outline:3px solid #8cc8f5;outline-offset:1px}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}.metric{background:#eef4f9;border-radius:9px;padding:10px 12px}.metric small{display:block;color:#5b6f82}.metric strong{display:block;color:#173d68;font-size:18px;margin-top:3px}.print-only{display:none}.hidden{display:none}
-@media(max-width:950px){.roadmap{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:600px){.wrap{padding:10px}.roadmap{grid-template-columns:1fr}.summary{grid-template-columns:1fr}.spacer{display:none}.toolbar button{flex:1}}
-@media print{body{background:#fff}.wrap{max-width:none;padding:0}.hero{border-radius:0}.toolbar{display:none}.content{border:0;padding:0}.summary{display:none}.roadmap{grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.factor{padding:7px;min-height:0}.factor h3{font-size:10px}.factor select{border:0;padding:2px;font-size:10px}.factor .note{font-size:8px}.decision{break-inside:avoid}.field textarea{display:none}.print-only{display:block;white-space:pre-wrap;border:1px solid #ccc;border-radius:5px;padding:7px;font-size:11px;line-height:1.35;min-height:28px}.field-help{display:none}}
+*{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f3f6f9;color:#17324d}.wrap{max-width:1180px;margin:auto;padding:20px}.hero{background:#12385f;color:#fff;padding:24px;border-radius:14px}.hero h1{margin:0 0 8px;font-size:30px}.hero p{margin:0;line-height:1.5}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.toolbar button{padding:10px 14px;border:1px solid #b9c7d4;border-radius:8px;background:#fff;color:#17324d;font-weight:700;cursor:pointer}.toolbar button.active{background:#173d68;color:#fff}.content{background:#fff;border:1px solid #d6e0e8;border-radius:14px;padding:20px}.sub{color:#596f82}.roadmap{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:18px}.factor{background:#f8fbfd;border:2px solid #c9d8e5;border-radius:12px;padding:14px;min-height:145px}.factor h3{margin:0 0 14px;font-size:15px;line-height:1.25;color:#173f67}.factor label{display:block;font-size:12px;font-weight:700;margin-bottom:6px}.factor select{width:100%;padding:9px;border:1px solid #aebfce;border-radius:7px;background:#fff;color:#172b40;font-size:14px}.factor .note{font-size:11px;color:#637789;margin-top:8px}.decision{margin-top:22px;border:1px solid #ccd9e4;border-radius:12px;overflow:hidden}.decision h2{margin:0;padding:12px 16px;background:#12385f;color:#fff;font-size:17px}.fields{padding:16px}.field{margin-bottom:14px}.field:last-child{margin-bottom:0}.field label{display:block;font-weight:700;margin-bottom:6px}.field textarea{width:100%;min-height:92px;padding:11px;border:1px solid #aebfce;border-radius:8px;background:#fff;color:#172b40;font:inherit}.metrics{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.metric{background:#eef4f9;border-radius:9px;padding:10px 12px;min-width:150px}.metric small{display:block;color:#5a6f82}.metric strong{display:block;font-size:18px;color:#173d68;margin-top:3px}.print-only{display:none}.hidden{display:none}
+@media(max-width:950px){.roadmap{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.wrap{padding:10px}.roadmap{grid-template-columns:1fr}.toolbar button{flex:1}}
+@media print{body{background:#fff}.wrap{max-width:none;padding:0}.hero{border-radius:0}.toolbar{display:none}.content{border:0}.roadmap{grid-template-columns:repeat(5,1fr);gap:7px}.factor{padding:8px}.factor h3{font-size:10px}.factor select{font-size:10px;padding:2px}.factor .note{font-size:8px}.field textarea{display:none}.print-only{display:block;border:1px solid #ccc;padding:8px;white-space:pre-wrap;min-height:28px;font-size:11px}.metrics{display:none}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<header class="hero"><h1>AI Development Decision Roadmaps</h1><p>Identify and prioritize the factors influencing your proposed AI industry development in a U.S. state and a country. Assign an importance weight from 0 (not applicable) to 5 (highest).</p></header>
-<div class="toolbar">
-<button id="countryBtn" class="active" type="button">Country roadmap</button>
-<button id="stateBtn" type="button">State roadmap</button>
-<span class="spacer"></span>
-<button id="resetBtn" type="button">Reset current roadmap</button>
-<button id="resetAllBtn" type="button">Reset both</button>
-<button id="printBtn" type="button">Print / Save PDF</button>
+  <header class="hero">
+    <h1>AI Development Decision Roadmaps</h1>
+    <p>Identify and prioritize the factors influencing your proposed AI industry development in a country and a U.S. state. Assign an importance weight from 0 (not applicable) to 5 (highest importance).</p>
+  </header>
+
+  <div class="toolbar">
+    <button id="countryTab" class="active" type="button">Country roadmap</button>
+    <button id="stateTab" type="button">State roadmap</button>
+    <span style="flex:1"></span>
+    <button id="resetCurrent" type="button">Reset current roadmap</button>
+    <button id="resetAll" type="button">Reset both</button>
+    <button id="printBtn" type="button">Print / Save PDF</button>
+  </div>
+
+  <main class="content">
+    <h2 id="roadmapTitle">Country Roadmap</h2>
+    <p class="sub" id="roadmapSubtitle">National AI Industry Development Decision</p>
+
+    <div class="metrics">
+      <div class="metric"><small>Factors rated</small><strong id="rated">0 / 10</strong></div>
+      <div class="metric"><small>Highest weight</small><strong id="highest">Not yet rated</strong></div>
+    </div>
+
+    <section id="countryPanel">
+      <div class="roadmap" id="countryRoadmap"></div>
+      <section class="decision">
+        <h2>Recommendation</h2>
+        <div class="fields">
+          <div class="field"><label for="countryRec">Recommended AI industry and decision</label><textarea id="countryRec" placeholder="Enter the AI industry you recommend and why."></textarea><div id="countryRecPrint" class="print-only"></div></div>
+          <div class="field"><label for="countryRationale">Decision-making summary</label><textarea id="countryRationale" placeholder="Explain the most important factors, tradeoffs, and evidence specific to the country."></textarea><div id="countryRationalePrint" class="print-only"></div></div>
+          <div class="field"><label for="countryDisclosure">GenAI use / prompt disclosure (if applicable)</label><textarea id="countryDisclosure" placeholder="Record the tool, prompt, and required disclosure or indicate no GenAI use."></textarea><div id="countryDisclosurePrint" class="print-only"></div></div>
+        </div>
+      </section>
+    </section>
+
+    <section id="statePanel" class="hidden">
+      <div class="roadmap" id="stateRoadmap"></div>
+      <section class="decision">
+        <h2>Recommendation</h2>
+        <div class="fields">
+          <div class="field"><label for="stateRec">Recommended AI industry and decision</label><textarea id="stateRec" placeholder="Enter the AI industry you recommend and why."></textarea><div id="stateRecPrint" class="print-only"></div></div>
+          <div class="field"><label for="stateRationale">Decision-making summary</label><textarea id="stateRationale" placeholder="Explain the most important factors, tradeoffs, and evidence specific to the state."></textarea><div id="stateRationalePrint" class="print-only"></div></div>
+          <div class="field"><label for="stateDisclosure">GenAI use / prompt disclosure (if applicable)</label><textarea id="stateDisclosure" placeholder="Record the tool, prompt, and required disclosure or indicate no GenAI use."></textarea><div id="stateDisclosurePrint" class="print-only"></div></div>
+        </div>
+      </section>
+    </section>
+  </main>
 </div>
-<main class="content">
-<h2 id="title">Country roadmap</h2><p id="scope" class="sub">National AI industry development decision.</p>
-<div class="summary"><div class="metric"><small>Factors rated</small><strong id="rated">0 / 10</strong></div><div class="metric"><small>Highest weight</small><strong id="highest">Not yet rated</strong></div><div class="metric"><small>Current view</small><strong id="viewName">Country</strong></div></div>
-<div id="roadmap" class="roadmap"></div>
-<section class="decision"><h2>Recommendation</h2><div class="fields">
-<div class="field"><label for="recommendation">Recommended AI industry and decision</label><textarea id="recommendation" placeholder="Enter the AI industry you recommend and why."></textarea><div id="printRecommendation" class="print-only"></div></div>
-<div class="field"><label for="rationale">Decision-making summary</label><textarea id="rationale" placeholder="Explain the most important factors, tradeoffs, and evidence specific to your location."></textarea><div id="printRationale" class="print-only"></div></div>
-<div class="field"><label for="disclosure">GenAI use / prompt disclosure (if applicable)</label><textarea id="disclosure" placeholder="Record the tool, prompt, and required disclosure or indicate no GenAI use."></textarea><div id="printDisclosure" class="print-only"></div></div>
-</div></section>
-</main></div>
+
 <script>
-(function(){
-const country=[
-'National Economic Impact & Growth Potential','Global Competitiveness & Market Demand','Talent & Workforce Availability','Policy & Regulatory Support','Infrastructure & Technology Readiness','Investment & Capital Availability','Industry Ecosystem & Partnerships','Social Impact & Ethical Considerations','Sustainability & Environmental Impact','National Security & Strategic Priority'];
-const state=[
-'Economic Development Potential','State Policy & Education System','Existing Industry Strength & Synergies','Infrastructure & Digital Readiness','Cost of Doing Business & Incentives','Innovation Ecosystem & Research Assets','Access to Capital & Funding','Workforce Diversity & Skills','Sustainability & Community Impact','Risk & Resilience Factors'];
-function fresh(names){return {weights:Array(10).fill(''),recommendation:'',rationale:'',disclosure:''}}
-const data={country:fresh(country),state:fresh(state)};let current='country';
-const $=id=>document.getElementById(id);
-function render(){const names=current==='country'?country:state;const d=data[current];$('countryBtn').className=current==='country'?'active':'';$('stateBtn').className=current==='state'?'active':'';$('title').textContent=current==='country'?'Country roadmap':'State roadmap';$('viewName').textContent=current==='country'?'Country':'State';$('scope').textContent=current==='country'?'National AI industry development decision.':'State AI industry development decision.';$('recommendation').value=d.recommendation;$('rationale').value=d.rationale;$('disclosure').value=d.disclosure;$('roadmap').innerHTML='';names.forEach(function(name,i){const card=document.createElement('section');card.className='factor';const h=document.createElement('h3');h.textContent=(i+1)+'. '+name;const lab=document.createElement('label');lab.textContent='Importance weight';lab.htmlFor='w'+i;const sel=document.createElement('select');sel.id='w'+i;sel.setAttribute('aria-label',name+' importance weight');const options=[['','Not rated'],['0','0'],['1','1'],['2','2'],['3','3'],['4','4'],['5','5']];options.forEach(function(pair){const o=document.createElement('option');o.value=pair[0];o.textContent=pair[1];if(pair[0]===String(d.weights[i]))o.selected=true;sel.appendChild(o)});sel.addEventListener('change',function(){d.weights[i]=this.value;update()});const note=document.createElement('div');note.className='note';note.textContent='0 = not applicable; 1 = lowest; 5 = highest';card.appendChild(h);card.appendChild(lab);card.appendChild(sel);card.appendChild(note);$('roadmap').appendChild(card)});update()}
-function update(){const d=data[current];let rated=0,max=-1,tops=[];d.weights.forEach(function(w,i){if(w!==''){rated++;const n=Number(w);if(n>max){max=n;tops=[i]}else if(n===max){tops.push(i)}});$('rated').textContent=rated+' / 10';$('highest').textContent=max<0?'Not yet rated':max+'/5';}
-function save(){const d=data[current];d.recommendation=$('recommendation').value;d.rationale=$('rationale').value;d.disclosure=$('disclosure').value}
-$('recommendation').addEventListener('input',save);$('rationale').addEventListener('input',save);$('disclosure').addEventListener('input',save);
-$('countryBtn').addEventListener('click',function(){save();current='country';render()});$('stateBtn').addEventListener('click',function(){save();current='state';render()});
-$('resetBtn').addEventListener('click',function(){if(confirm('Reset the current roadmap?')){data[current]=fresh(current==='country'?country:state);render()}});
-$('resetAllBtn').addEventListener('click',function(){if(confirm('Reset both roadmaps?')){data.country=fresh(country);data.state=fresh(state);render()}});
-function preparePrint(){save();$('printRecommendation').textContent=$('recommendation').value.trim()||'(No response entered)';$('printRationale').textContent=$('rationale').value.trim()||'(No response entered)';$('printDisclosure').textContent=$('disclosure').value.trim()||'(No response entered)'}
-$('printBtn').addEventListener('click',function(){preparePrint();window.print()});window.addEventListener('beforeprint',preparePrint);
-render();
-})();
+const factors={
+ country:[
+  'National Economic Impact & Growth Potential','Global Competitiveness & Market Demand','Talent & Workforce Availability','Policy & Regulatory Support','Infrastructure & Technology Readiness',
+  'Investment & Capital Availability','Industry Ecosystem & Partnerships','Social Impact & Ethical Considerations','Sustainability & Environmental Impact','National Security & Strategic Priority'
+ ],
+ state:[
+  'Economic Development Potential','State Policy & Education System','Existing Industry Strength & Synergies','Infrastructure & Digital Readiness','Cost of Doing Business & Incentives',
+  'Innovation Ecosystem & Research Assets','Access to Capital & Funding','Workforce Diversity & Skills','Sustainability & Community Impact','Risk & Resilience Factors'
+ ]
+};
+const data={country:{weights:Array(10).fill(''),rec:'',rationale:'',disclosure:''},state:{weights:Array(10).fill(''),rec:'',rationale:'',disclosure:''}};
+let current='country';
+function buildCards(kind){
+ const host=document.getElementById(kind+'Roadmap');host.innerHTML='';
+ factors[kind].forEach((name,i)=>{
+  const card=document.createElement('section');card.className='factor';
+  card.innerHTML='<h3>'+(i+1)+'. '+name+'</h3><label for="'+kind+'Weight'+i+'">Importance weight</label><select id="'+kind+'Weight'+i+'" aria-label="'+name+' importance weight"><option value="">Not rated</option><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select><div class="note">0 = not applicable; 1 = lowest; 5 = highest</div>';
+  host.appendChild(card);
+  const sel=card.querySelector('select');sel.value=data[kind].weights[i];sel.addEventListener('change',()=>{data[kind].weights[i]=sel.value;updateMetrics()});
+ });
+}
+function loadText(kind){
+ document.getElementById(kind+'Rec').value=data[kind].rec;
+ document.getElementById(kind+'Rationale').value=data[kind].rationale;
+ document.getElementById(kind+'Disclosure').value=data[kind].disclosure;
+}
+function saveText(kind){
+ data[kind].rec=document.getElementById(kind+'Rec').value;
+ data[kind].rationale=document.getElementById(kind+'Rationale').value;
+ data[kind].disclosure=document.getElementById(kind+'Disclosure').value;
+}
+function updateMetrics(){
+ const d=data[current];const rated=d.weights.filter(x=>x!=='').length;let max=-1;d.weights.forEach(x=>{if(x!=='')max=Math.max(max,Number(x))});
+ document.getElementById('rated').textContent=rated+' / 10';document.getElementById('highest').textContent=max<0?'Not yet rated':max+'/5';
+}
+function show(kind){
+ saveText(current);current=kind;
+ document.getElementById('countryTab').classList.toggle('active',kind==='country');document.getElementById('stateTab').classList.toggle('active',kind==='state');
+ document.getElementById('countryPanel').classList.toggle('hidden',kind!=='country');document.getElementById('statePanel').classList.toggle('hidden',kind!=='state');
+ document.getElementById('roadmapTitle').textContent=kind==='country'?'Country Roadmap':'State Roadmap';
+ document.getElementById('roadmapSubtitle').textContent=kind==='country'?'National AI Industry Development Decision':'State AI Industry Development Decision';
+ loadText(kind);updateMetrics();
+}
+function reset(kind){data[kind]={weights:Array(10).fill(''),rec:'',rationale:'',disclosure:''};buildCards(kind);loadText(kind);if(current===kind)updateMetrics()}
+function preparePrint(){saveText(current);const ids=current==='country'?['countryRec','countryRationale','countryDisclosure']:['stateRec','stateRationale','stateDisclosure'];ids.forEach(id=>document.getElementById(id+'Print').textContent=document.getElementById(id).value.trim()||'(No response entered)')}
+
+document.getElementById('countryTab').onclick=()=>show('country');
+document.getElementById('stateTab').onclick=()=>show('state');
+document.getElementById('resetCurrent').onclick=()=>{if(confirm('Reset the current roadmap?'))reset(current)};
+document.getElementById('resetAll').onclick=()=>{if(confirm('Reset both roadmaps?')){reset('country');reset('state');loadText(current);updateMetrics()}};
+document.getElementById('printBtn').onclick=()=>{preparePrint();window.print()};
+['country','state'].forEach(kind=>['Rec','Rationale','Disclosure'].forEach(s=>document.getElementById(kind+s).addEventListener('input',()=>saveText(kind))));
+buildCards('country');buildCards('state');loadText('country');show('country');
 </script>
 </body>
 </html>
