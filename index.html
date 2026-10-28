@@ -59,7 +59,7 @@ function buildCards(kind){
  factors[kind].forEach((name,i)=>{
   const card=document.createElement('div');
   card.className='factor';
-  card.innerHTML=`<h3>${i+1}. ${name}</h3><label for="${kind}-${i}">Importance weight</label><select id="${kind}-${i}" aria-label="${name} importance weight"><option value="">Select</option><option value="0">0 — Not applicable</option><option value="1">1 — Lowest</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5 — Highest</option></select>`;
+  card.innerHTML=`<h3>${i+1}. ${name}</h3><label for="${kind}-${i}">Importance weight</label><select id="${kind}-${i}" aria-label="${name} importance weight"><option value="">Select</option><option value="0">0 — Not applicable</option><option value="1">1 — Lowest</option><option value="2">2 — Low</option><option value="3">3 — Moderate</option><option value="4">4 — High</option><option value="5">5 — Highest</option></select>`;
   const sel=card.querySelector('select');
   sel.value=data[kind][i];
   sel.addEventListener('change',()=>data[kind][i]=sel.value);
