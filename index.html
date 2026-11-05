@@ -43,6 +43,12 @@ input::placeholder,textarea::placeholder{color:#596f82;opacity:1}
 .factor .rating-field{margin-top:auto}
 .factor label{font-size:12px;margin-bottom:6px}
 .factor select{font-size:14px;padding:9px 6px;min-height:44px}
+.index-summary{display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;background:#eef4f9;border:1px solid #c9d8e5;border-radius:12px;padding:20px;margin-top:20px}
+.index-summary h3{margin:0 0 6px;font-size:18px;color:var(--navy)}
+.index-description{margin:0;max-width:540px;font-size:13px;color:var(--muted)}
+.index-results{min-width:190px}
+.index-score{margin:0;font-size:32px;font-weight:700;line-height:1.2;color:var(--navy);font-variant-numeric:tabular-nums}
+.index-status{margin:7px 0 0;font-size:13px;color:var(--muted)}
 .analysis-prompt{margin:0 0 18px;max-width:940px;line-height:1.65}
 textarea{display:block;min-height:250px;resize:vertical;line-height:1.65}
 .help{margin:10px 0 0;font-size:13px;color:var(--muted)}
@@ -70,6 +76,7 @@ footer{color:var(--muted);font-size:12px;text-align:center;padding:0 12px 18px}
  .print-report .report-comments{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6;height:auto;max-height:none;overflow:visible}
  .print-report .report-prompt{font-size:10pt;color:#354d62;line-height:1.5}
  .print-report .report-note{font-size:9pt;color:#354d62;margin-top:16px}
+ .print-report .report-index{font-size:21pt;font-weight:700;color:#12385f;margin:8px 0}
 }
 </style>
 </head>
@@ -87,7 +94,7 @@ footer{color:var(--muted);font-size:12px;text-align:center;padding:0 12px 18px}
       <button id="reset-ratings" type="button">Reset ratings</button>
       <button id="print-button" type="button" class="primary">Print / Save PDF</button>
     </div>
-    <noscript><p class="content">Enable JavaScript to update the rating count and create a printable response.</p></noscript>
+    <noscript><p class="content">Enable JavaScript to calculate the priority index and create a printable response.</p></noscript>
     <main id="main">
       <section class="content" aria-labelledby="context-heading">
         <h2 id="context-heading">Your development decision</h2>
@@ -95,7 +102,7 @@ footer{color:var(--muted);font-size:12px;text-align:center;padding:0 12px 18px}
         <div class="context-grid">
           <div>
             <label for="location">Assigned U.S. state <span class="optional">(optional)</span></label>
-            <input id="location" type="text" placeholder="Enter your assigned state" autocomplete="off">
+            <select id="location" autocomplete="off"><option value="">Select a state</option><option value="Colorado">Colorado</option><option value="Connecticut">Connecticut</option><option value="Maryland">Maryland</option><option value="New York">New York</option><option value="South Dakota">South Dakota</option><option value="Texas">Texas</option><option value="West Virginia">West Virginia</option></select>
           </div>
           <div>
             <label for="industry">Selected AI industry <span class="optional">(optional)</span></label>
@@ -109,7 +116,7 @@ footer{color:var(--muted);font-size:12px;text-align:center;padding:0 12px 18px}
             <h2 id="factors-heading">Prioritize your decision factors</h2>
             <p class="sub">Assign each factor an importance weight from 0 to 5.</p>
           </div>
-          <p class="progress" id="rating-progress" role="status" aria-live="polite" aria-atomic="true">0 of 10 factors rated</p>
+          <p class="progress" id="rating-progress">0 of 10 factors rated</p>
         </div>
         <p class="scale-note">0 = not applicable · 1 = lowest · 2 = low · 3 = moderate · 4 = high · 5 = highest</p>
         <div class="roadmap" aria-label="State decision factors"><div class="factor">
@@ -192,6 +199,16 @@ footer{color:var(--muted);font-size:12px;text-align:center;padding:0 12px 18px}
             <select id="weight-9" aria-labelledby="factor-name-9 weight-label-9"><option value="">Select a weight</option><option value="0">0 — Not applicable</option><option value="1">1 — Lowest</option><option value="2">2 — Low</option><option value="3">3 — Moderate</option><option value="4">4 — High</option><option value="5">5 — Highest</option></select>
           </div>
         </div></div>
+        <div class="index-summary">
+          <div>
+            <h3 id="index-heading">Priority index</h3>
+            <p class="index-description">Sum of the ten importance weights. Each factor contributes 0–5 points; maximum 50.</p>
+          </div>
+          <div class="index-results" role="status" aria-live="polite" aria-atomic="true" aria-labelledby="index-heading">
+            <p class="index-score" id="index-value">— / 50</p>
+            <p class="index-status" id="index-status">Not started · 0 of 10 factors rated</p>
+          </div>
+        </div>
       </section>
       <section class="content" aria-labelledby="comments-heading">
         <h2 id="comments-heading">Student comments and analysis</h2>
@@ -215,15 +232,34 @@ footer{color:var(--muted);font-size:12px;text-align:center;padding:0 12px 18px}
   const commentsInput = document.getElementById('comments');
   const ratings = Array.from(document.querySelectorAll('.factor select'));
   const progress = document.getElementById('rating-progress');
+  const indexValue = document.getElementById('index-value');
+  const indexStatus = document.getElementById('index-status');
   const report = document.getElementById('print-report');
   const weightLabels = {
     '': 'Not rated', '0': '0 — Not applicable', '1': '1 — Lowest',
     '2': '2 — Low', '3': '3 — Moderate', '4': '4 — High', '5': '5 — Highest'
   };
 
-  function updateProgress() {
-    const count = ratings.filter(select => select.value !== '').length;
-    progress.textContent = `${count} of ${ratings.length} factors rated`;
+  function calculateIndex() {
+    const rated = ratings.filter(select => select.value !== '');
+    return {
+      total: rated.reduce((sum, select) => sum + Number(select.value), 0),
+      count: rated.length,
+      maximum: ratings.length * 5
+    };
+  }
+
+  function describeIndex(index) {
+    const count = `${index.count} of ${ratings.length} factors rated`;
+    if (index.count === 0) return `Not started · ${count}`;
+    return `${index.count === ratings.length ? 'Complete' : 'Partial total'} · ${count}`;
+  }
+
+  function updateSummary() {
+    const index = calculateIndex();
+    progress.textContent = `${index.count} of ${ratings.length} factors rated`;
+    indexValue.textContent = `${index.count ? index.total : '—'} / ${index.maximum}`;
+    indexStatus.textContent = describeIndex(index);
   }
 
   function makeElement(tag, text, className) {
@@ -244,7 +280,12 @@ footer{color:var(--muted);font-size:12px;text-align:center;padding:0 12px 18px}
     context.forEach(([label, value]) => {
       details.append(makeElement('dt', label), makeElement('dd', value));
     });
-    report.append(details, makeElement('h2', 'Decision factors'));
+    const index = calculateIndex();
+    report.append(details, makeElement('h2', 'Priority index'));
+    report.append(makeElement('p', `${index.count ? index.total : '—'} / ${index.maximum}`, 'report-index'));
+    report.append(makeElement('p', describeIndex(index), 'report-prompt'));
+    report.append(makeElement('p', `Sum of the ten importance weights. Each factor contributes 0–5 points; maximum ${index.maximum}.`, 'report-prompt'));
+    report.append(makeElement('h2', 'Decision factors'));
     report.append(makeElement('p', 'Importance weights: 0 = not applicable; 1 = lowest; 2 = low; 3 = moderate; 4 = high; 5 = highest.', 'report-prompt'));
     const table = makeElement('table');
     const head = makeElement('thead');
@@ -270,17 +311,17 @@ footer{color:var(--muted);font-size:12px;text-align:center;padding:0 12px 18px}
     report.append(makeElement('p', 'Importance weights express the student’s priorities for the selected AI industry.', 'report-note'));
   }
 
-  ratings.forEach(select => select.addEventListener('change', updateProgress));
+  ratings.forEach(select => select.addEventListener('change', updateSummary));
   document.getElementById('reset-ratings').addEventListener('click', () => {
     ratings.forEach(select => { select.value = ''; });
-    updateProgress();
+    updateSummary();
   });
   document.getElementById('print-button').addEventListener('click', () => {
     renderPrintReport();
     window.print();
   });
   window.addEventListener('beforeprint', renderPrintReport);
-  updateProgress();
+  updateSummary();
   document.body.classList.add('ready');
 })();
 </script>
