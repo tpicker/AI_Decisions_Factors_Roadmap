@@ -3,79 +3,286 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI Development Decision Roadmaps</title>
+<meta name="description" content="Prioritize ten AI industry development factors and explain your decision for an assigned U.S. state. Includes student comments and Print / Save PDF.">
+<title>State AI Development Decision Roadmap</title>
 <style>
-*{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f3f6f9;color:#17324d}.wrap{max-width:1180px;margin:auto;padding:20px}.hero{background:#12385f;color:#fff;padding:24px;border-radius:14px}.hero h1{margin:0 0 8px;font-size:30px}.hero p{margin:0;line-height:1.5}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.toolbar button{padding:10px 14px;border:1px solid #b9c7d4;border-radius:8px;background:#fff;color:#17324d;font-weight:700;cursor:pointer}.toolbar button.active{background:#173d68;color:#fff}.content{background:#fff;border:1px solid #d6e0e8;border-radius:14px;padding:20px}.sub{color:#596f82}.roadmap{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:18px}.factor{background:#f8fbfd;border:2px solid #c9d8e5;border-radius:12px;padding:14px;min-height:145px}.factor h3{margin:0 0 14px;font-size:15px;line-height:1.25;color:#173f67}.factor label{display:block;font-size:12px;font-weight:700;margin-bottom:6px}.factor select{width:100%;padding:9px;border:1px solid #aebfce;border-radius:7px;background:#fff;color:#172b40;font-size:14px}.factor .note{font-size:11px;color:#637789;margin-top:8px}.metrics{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.metric{background:#eef4f9;border-radius:9px;padding:10px 12px;min-width:150px}.metric small{display:block;color:#5a6f82}.metric strong{display:block;font-size:18px;color:#173d68;margin-top:3px}.print-only{display:none}.print-section-title{display:none}.hidden{display:none}
-@media(max-width:950px){.roadmap{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){.wrap{padding:10px}.roadmap{grid-template-columns:1fr}.toolbar button{flex:1}}
-@media print{body{background:#fff}.wrap{max-width:none;padding:0}.hero{border-radius:0}.toolbar{display:none}.content{border:0}.print-section-title{display:block;margin:18px 0 8px;font-size:22px;font-weight:800;color:#173d68}.print-both #roadmapTitle,.print-both #roadmapSubtitle{display:none}.print-both #countryPanel,.print-both #statePanel{display:block!important}.print-both #countryPanel{page-break-after:always}.roadmap{grid-template-columns:repeat(5,1fr);gap:7px}.factor{padding:8px}.factor h3{font-size:10px}.factor select{font-size:10px;padding:2px}.factor .note{font-size:8px}.field textarea{display:none}.print-only{display:block;border:1px solid #ccc;padding:8px;white-space:pre-wrap;min-height:28px;font-size:11px}.metrics{display:none}}
+:root{color-scheme:light;--navy:#12385f;--ink:#17324d;--muted:#526b80;--line:#d6e0e8;--paper:#f3f6f9;--card:#f8fbfd}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.5}
+button,input,select,textarea{font:inherit}
+button,input,select,textarea{color:var(--ink)}
+.wrap{max-width:1180px;margin:0 auto;padding:20px}
+.skip-link{position:absolute;top:-100px;left:20px;z-index:10;background:#fff;padding:12px;color:var(--navy)}
+.skip-link:focus{top:10px}
+:focus-visible{outline:3px solid #165ea8;outline-offset:3px}
+.hero{background:var(--navy);color:#fff;padding:26px;border-radius:14px}
+.eyebrow{margin:0 0 8px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#dae8f6}
+h1{margin:0 0 10px;font-size:clamp(25px,3.2vw,32px);line-height:1.2;max-width:850px}
+.hero .intro{margin:0;max-width:850px;line-height:1.6;color:#f0f6fc}
+.toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:16px 0}
+.toolbar .save-note{flex:1;margin:0;font-size:13px;color:var(--muted)}
+button{min-height:44px;border:1px solid #b9c7d4;border-radius:8px;padding:10px 15px;background:#fff;font-weight:700;cursor:pointer}
+button:hover{background:#eaf0f6}
+button.primary{background:var(--navy);border-color:var(--navy);color:#fff}
+button.primary:hover{background:#1a4978}
+.content{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;margin-bottom:18px}
+h2{font-size:21px;line-height:1.3;margin:0 0 8px}
+.sub{margin:0;color:var(--muted)}
+.context-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}
+label{display:block;font-weight:700;margin-bottom:7px;font-size:14px}
+.optional{font-size:12px;font-weight:400;color:var(--muted)}
+input,select,textarea{width:100%;border:1px solid #aebfce;background:#fff;border-radius:8px;padding:11px 12px;min-height:44px}
+input::placeholder,textarea::placeholder{color:#596f82;opacity:1}
+.factor-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.progress{margin:0;background:#eef4f9;border:1px solid var(--line);padding:8px 12px;border-radius:8px;font-size:13px;white-space:nowrap}
+.scale-note{margin:14px 0 0;font-size:13px;color:var(--muted)}
+.roadmap{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:18px}
+.factor{background:var(--card);border:2px solid #c9d8e5;border-radius:12px;padding:14px;display:flex;flex-direction:column;min-width:0}
+.factor-number{display:block;color:var(--muted);font-size:11px;font-weight:700;letter-spacing:.06em;margin:0 0 8px}
+.factor h3{margin:0 0 20px;font-size:15px;line-height:1.4;color:#173f67;overflow-wrap:anywhere}
+.factor .rating-field{margin-top:auto}
+.factor label{font-size:12px;margin-bottom:6px}
+.factor select{font-size:14px;padding:9px 6px;min-height:44px}
+.analysis-prompt{margin:0 0 18px;max-width:940px;line-height:1.65}
+textarea{display:block;min-height:250px;resize:vertical;line-height:1.65}
+.help{margin:10px 0 0;font-size:13px;color:var(--muted)}
+footer{color:var(--muted);font-size:12px;text-align:center;padding:0 12px 18px}
+.print-report{display:none}
+@media(max-width:1000px){.roadmap{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.wrap{padding:12px}.hero{padding:22px 18px}.content{padding:20px 16px}.context-grid{grid-template-columns:1fr}.roadmap{grid-template-columns:1fr}.toolbar .save-note{flex-basis:100%}.toolbar button{flex:1}.factor h3{margin-bottom:16px}.factor-heading{gap:12px}textarea{min-height:280px}}
+@media print{
+ @page{margin:16mm}
+ body{background:#fff;color:#172b40;font-size:11pt}
+ body.ready .screen,.skip-link{display:none!important}
+ body.ready .print-report{display:block}
+ .wrap{max-width:none;margin:0;padding:0}
+ .print-report h1{font-size:23pt;max-width:none;color:#12385f;border-bottom:2px solid #12385f;padding-bottom:12px;margin-bottom:18px}
+ .print-report h2{font-size:15pt;margin-top:24px;break-after:avoid}
+ .report-context{margin:0 0 18px;display:grid;grid-template-columns:145px 1fr;gap:7px 12px}
+ .report-context dt{font-weight:700}
+ .report-context dd{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+ .print-report table{border-collapse:collapse;width:100%;font-size:10pt;margin-top:12px}
+ .print-report thead{display:table-header-group}
+ .print-report th,.print-report td{border:1px solid #b9c7d4;text-align:left;padding:8px;vertical-align:top}
+ .print-report th{font-weight:700;background:#eef4f9}
+ .print-report th:last-child,.print-report td:last-child{width:145px}
+ .print-report tr{break-inside:avoid}
+ .print-report .report-comments{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6;height:auto;max-height:none;overflow:visible}
+ .print-report .report-prompt{font-size:10pt;color:#354d62;line-height:1.5}
+ .print-report .report-note{font-size:9pt;color:#354d62;margin-top:16px}
+}
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to roadmap</a>
 <div class="wrap">
-  <header class="hero">
-    <h1>AI Development Decision Roadmaps</h1>
-    <p>Identify and prioritize the factors influencing your proposed AI industry development in a country and a U.S. state. Assign an importance weight from 0 (not applicable) to 5 (highest importance).</p>
-  </header>
-
-  <div class="toolbar">
-    <span style="flex:1"></span>
-    <button id="resetCurrent" type="button">Reset current roadmap</button>
-    <button id="resetAll" type="button">Reset both</button>
-    <button id="printBtn" type="button">Print / Save PDF</button>
+  <div class="screen">
+    <header class="hero">
+      <p class="eyebrow">State decision roadmap</p>
+      <h1>State AI Development Decision Roadmap</h1>
+      <p class="intro">Identify and prioritize the factors influencing your proposed AI industry development in your assigned U.S. state. Explain how your priorities support your decision.</p>
+    </header>
+    <div class="toolbar" aria-label="Roadmap actions">
+      <p class="save-note">Responses stay in this tab. Print or save a PDF before closing or refreshing.</p>
+      <button id="reset-ratings" type="button">Reset ratings</button>
+      <button id="print-button" type="button" class="primary">Print / Save PDF</button>
+    </div>
+    <noscript><p class="content">Enable JavaScript to update the rating count and create a printable response.</p></noscript>
+    <main id="main">
+      <section class="content" aria-labelledby="context-heading">
+        <h2 id="context-heading">Your development decision</h2>
+        <p class="sub">Identify the location and AI industry you are considering.</p>
+        <div class="context-grid">
+          <div>
+            <label for="location">Assigned U.S. state <span class="optional">(optional)</span></label>
+            <input id="location" type="text" placeholder="Enter your assigned state" autocomplete="off">
+          </div>
+          <div>
+            <label for="industry">Selected AI industry <span class="optional">(optional)</span></label>
+            <input id="industry" type="text" placeholder="Enter your proposed AI industry" autocomplete="off">
+          </div>
+        </div>
+      </section>
+      <section class="content" aria-labelledby="factors-heading">
+        <div class="factor-heading">
+          <div>
+            <h2 id="factors-heading">Prioritize your decision factors</h2>
+            <p class="sub">Assign each factor an importance weight from 0 to 5.</p>
+          </div>
+          <p class="progress" id="rating-progress" role="status" aria-live="polite" aria-atomic="true">0 of 10 factors rated</p>
+        </div>
+        <p class="scale-note">0 = not applicable · 1 = lowest · 2 = low · 3 = moderate · 4 = high · 5 = highest</p>
+        <div class="roadmap" aria-label="State decision factors"><div class="factor">
+          <span class="factor-number">FACTOR 01</span>
+          <h3 id="factor-name-0">Economic Development Potential</h3>
+          <div class="rating-field">
+            <label id="weight-label-0" for="weight-0">Importance weight</label>
+            <select id="weight-0" aria-labelledby="factor-name-0 weight-label-0"><option value="">Select a weight</option><option value="0">0 — Not applicable</option><option value="1">1 — Lowest</option><option value="2">2 — Low</option><option value="3">3 — Moderate</option><option value="4">4 — High</option><option value="5">5 — Highest</option></select>
+          </div>
+        </div>
+<div class="factor">
+          <span class="factor-number">FACTOR 02</span>
+          <h3 id="factor-name-1">State Policy &amp; Education System</h3>
+          <div class="rating-field">
+            <label id="weight-label-1" for="weight-1">Importance weight</label>
+            <select id="weight-1" aria-labelledby="factor-name-1 weight-label-1"><option value="">Select a weight</option><option value="0">0 — Not applicable</option><option value="1">1 — Lowest</option><option value="2">2 — Low</option><option value="3">3 — Moderate</option><option value="4">4 — High</option><option value="5">5 — Highest</option></select>
+          </div>
+        </div>
+<div class="factor">
+          <span class="factor-number">FACTOR 03</span>
+          <h3 id="factor-name-2">Existing Industry Strength &amp; Synergies</h3>
+          <div class="rating-field">
+            <label id="weight-label-2" for="weight-2">Importance weight</label>
+            <select id="weight-2" aria-labelledby="factor-name-2 weight-label-2"><option value="">Select a weight</option><option value="0">0 — Not applicable</option><option value="1">1 — Lowest</option><option value="2">2 — Low</option><option value="3">3 — Moderate</option><option value="4">4 — High</option><option value="5">5 — Highest</option></select>
+          </div>
+        </div>
+<div class="factor">
+          <span class="factor-number">FACTOR 04</span>
+          <h3 id="factor-name-3">Infrastructure &amp; Digital Readiness</h3>
+          <div class="rating-field">
+            <label id="weight-label-3" for="weight-3">Importance weight</label>
+            <select id="weight-3" aria-labelledby="factor-name-3 weight-label-3"><option value="">Select a weight</option><option value="0">0 — Not applicable</option><option value="1">1 — Lowest</option><option value="2">2 — Low</option><option value="3">3 — Moderate</option><option value="4">4 — High</option><option value="5">5 — Highest</option></select>
+          </div>
+        </div>
+<div class="factor">
+          <span class="factor-number">FACTOR 05</span>
+          <h3 id="factor-name-4">Cost of Doing Business &amp; Incentives</h3>
+          <div class="rating-field">
+            <label id="weight-label-4" for="weight-4">Importance weight</label>
+            <select id="weight-4" aria-labelledby="factor-name-4 weight-label-4"><option value="">Select a weight</option><option value="0">0 — Not applicable</option><option value="1">1 — Lowest</option><option value="2">2 — Low</option><option value="3">3 — Moderate</option><option value="4">4 — High</option><option value="5">5 — Highest</option></select>
+          </div>
+        </div>
+<div class="factor">
+          <span class="factor-number">FACTOR 06</span>
+          <h3 id="factor-name-5">Innovation Ecosystem &amp; Research Assets</h3>
+          <div class="rating-field">
+            <label id="weight-label-5" for="weight-5">Importance weight</label>
+            <select id="weight-5" aria-labelledby="factor-name-5 weight-label-5"><option value="">Select a weight</option><option value="0">0 — Not applicable</option><option value="1">1 — Lowest</option><option value="2">2 — Low</option><option value="3">3 — Moderate</option><option value="4">4 — High</option><option value="5">5 — Highest</option></select>
+          </div>
+        </div>
+<div class="factor">
+          <span class="factor-number">FACTOR 07</span>
+          <h3 id="factor-name-6">Access to Capital &amp; Funding</h3>
+          <div class="rating-field">
+            <label id="weight-label-6" for="weight-6">Importance weight</label>
+            <select id="weight-6" aria-labelledby="factor-name-6 weight-label-6"><option value="">Select a weight</option><option value="0">0 — Not applicable</option><option value="1">1 — Lowest</option><option value="2">2 — Low</option><option value="3">3 — Moderate</option><option value="4">4 — High</option><option value="5">5 — Highest</option></select>
+          </div>
+        </div>
+<div class="factor">
+          <span class="factor-number">FACTOR 08</span>
+          <h3 id="factor-name-7">Workforce Diversity &amp; Skills</h3>
+          <div class="rating-field">
+            <label id="weight-label-7" for="weight-7">Importance weight</label>
+            <select id="weight-7" aria-labelledby="factor-name-7 weight-label-7"><option value="">Select a weight</option><option value="0">0 — Not applicable</option><option value="1">1 — Lowest</option><option value="2">2 — Low</option><option value="3">3 — Moderate</option><option value="4">4 — High</option><option value="5">5 — Highest</option></select>
+          </div>
+        </div>
+<div class="factor">
+          <span class="factor-number">FACTOR 09</span>
+          <h3 id="factor-name-8">Sustainability &amp; Community Impact</h3>
+          <div class="rating-field">
+            <label id="weight-label-8" for="weight-8">Importance weight</label>
+            <select id="weight-8" aria-labelledby="factor-name-8 weight-label-8"><option value="">Select a weight</option><option value="0">0 — Not applicable</option><option value="1">1 — Lowest</option><option value="2">2 — Low</option><option value="3">3 — Moderate</option><option value="4">4 — High</option><option value="5">5 — Highest</option></select>
+          </div>
+        </div>
+<div class="factor">
+          <span class="factor-number">FACTOR 10</span>
+          <h3 id="factor-name-9">Risk &amp; Resilience Factors</h3>
+          <div class="rating-field">
+            <label id="weight-label-9" for="weight-9">Importance weight</label>
+            <select id="weight-9" aria-labelledby="factor-name-9 weight-label-9"><option value="">Select a weight</option><option value="0">0 — Not applicable</option><option value="1">1 — Lowest</option><option value="2">2 — Low</option><option value="3">3 — Moderate</option><option value="4">4 — High</option><option value="5">5 — Highest</option></select>
+          </div>
+        </div></div>
+      </section>
+      <section class="content" aria-labelledby="comments-heading">
+        <h2 id="comments-heading">Student comments and analysis</h2>
+        <p id="analysis-prompt" class="analysis-prompt">Explain how the selected industry leverages local strengths, supports high-quality jobs, strengthens resilience, and aligns with the state’s economic, social, and environmental priorities.</p>
+        <label for="comments">Your analysis</label>
+        <textarea id="comments" rows="10" placeholder="Write your analysis here." aria-describedby="analysis-prompt comments-help"></textarea>
+        <p class="help" id="comments-help">Connect your factor ratings to your recommendation. Include evidence and tradeoffs where relevant. Your full response is included when you print or save a PDF.</p>
+      </section>
+    </main>
+    <footer>Browser-based student drafting tool · Nothing is submitted or shared automatically.</footer>
   </div>
-
-  <main class="content">
-    <h2>Country and State Decision Factors</h2>
-    <p class="sub">Rate the importance of each factor from 0 (not applicable) to 5 (highest importance). Both roadmaps are shown together.</p>
-
-    <section id="countryPanel"><div class="print-section-title">Country Roadmap — National AI Industry Development Decision</div>
-      <h3>Country Roadmap</h3>
-      <div class="roadmap" id="countryRoadmap"></div>
-    </section>
-
-    <section id="statePanel"><div class="print-section-title">State Roadmap — State AI Industry Development Decision</div>
-      <h3>State Roadmap</h3>
-      <div class="roadmap" id="stateRoadmap"></div>
-    </section>
-  </main>
+  <section id="print-report" class="print-report" aria-label="Printable roadmap response"></section>
 </div>
-
+<script type="application/json" id="roadmap-config">{"title": "State AI Development Decision Roadmap", "scope": "U.S. state", "locationLabel": "Assigned U.S. state", "locationPlaceholder": "Enter your assigned state", "prompt": "Explain how the selected industry leverages local strengths, supports high-quality jobs, strengthens resilience, and aligns with the state’s economic, social, and environmental priorities.", "factors": ["Economic Development Potential", "State Policy & Education System", "Existing Industry Strength & Synergies", "Infrastructure & Digital Readiness", "Cost of Doing Business & Incentives", "Innovation Ecosystem & Research Assets", "Access to Capital & Funding", "Workforce Diversity & Skills", "Sustainability & Community Impact", "Risk & Resilience Factors"]}</script>
 <script>
-const factors={
- country:[
-  'National Economic Impact & Growth Potential','Global Competitiveness & Market Demand','Talent & Workforce Availability','Policy & Regulatory Support','Infrastructure & Technology Readiness',
-  'Investment & Capital Availability','Industry Ecosystem & Partnerships','Social Impact & Ethical Considerations','Sustainability & Environmental Impact','National Security & Strategic Priority'
- ],
- state:[
-  'Economic Development Potential','State Policy & Education System','Existing Industry Strength & Synergies','Infrastructure & Digital Readiness','Cost of Doing Business & Incentives',
-  'Innovation Ecosystem & Research Assets','Access to Capital & Funding','Workforce Diversity & Skills','Sustainability & Community Impact','Risk & Resilience Factors'
- ]
-};
-const data={country:Array(10).fill(''),state:Array(10).fill('')};
-function buildCards(kind){
- const host=document.getElementById(kind+'Roadmap');
- host.innerHTML='';
- factors[kind].forEach((name,i)=>{
-  const card=document.createElement('div');
-  card.className='factor';
-  card.innerHTML=`<h3>${i+1}. ${name}</h3><label for="${kind}-${i}">Importance weight</label><select id="${kind}-${i}" aria-label="${name} importance weight"><option value="">Select</option><option value="0">0 — Not applicable</option><option value="1">1 — Lowest</option><option value="2">2 — Low</option><option value="3">3 — Moderate</option><option value="4">4 — High</option><option value="5">5 — Highest</option></select>`;
-  const sel=card.querySelector('select');
-  sel.value=data[kind][i];
-  sel.addEventListener('change',()=>data[kind][i]=sel.value);
-  host.appendChild(card);
- });
-}
-function resetAll(){data.country.fill('');data.state.fill('');document.querySelectorAll('select').forEach(s=>s.value='');}
-document.getElementById('resetCurrent').textContent='Reset ratings';
-document.getElementById('resetCurrent').addEventListener('click',resetAll);
-document.getElementById('resetAll').addEventListener('click',resetAll);
-document.getElementById('printBtn').addEventListener('click',()=>{
- document.body.classList.add('print-both');
- setTimeout(()=>{window.print();},50);
- setTimeout(()=>{document.body.classList.remove('print-both');},1000);
-});
-buildCards('country');buildCards('state');
+(() => {
+  'use strict';
+  const config = JSON.parse(document.getElementById('roadmap-config').textContent);
+  const locationInput = document.getElementById('location');
+  const industryInput = document.getElementById('industry');
+  const commentsInput = document.getElementById('comments');
+  const ratings = Array.from(document.querySelectorAll('.factor select'));
+  const progress = document.getElementById('rating-progress');
+  const report = document.getElementById('print-report');
+  const weightLabels = {
+    '': 'Not rated', '0': '0 — Not applicable', '1': '1 — Lowest',
+    '2': '2 — Low', '3': '3 — Moderate', '4': '4 — High', '5': '5 — Highest'
+  };
+
+  function updateProgress() {
+    const count = ratings.filter(select => select.value !== '').length;
+    progress.textContent = `${count} of ${ratings.length} factors rated`;
+  }
+
+  function makeElement(tag, text, className) {
+    const element = document.createElement(tag);
+    if (text !== undefined) element.textContent = text;
+    if (className) element.className = className;
+    return element;
+  }
+
+  function renderPrintReport() {
+    report.replaceChildren();
+    report.append(makeElement('h1', config.title));
+    const details = makeElement('dl', undefined, 'report-context');
+    const context = [
+      [config.locationLabel, locationInput.value.trim() || 'Not provided'],
+      ['Selected AI industry', industryInput.value.trim() || 'Not provided']
+    ];
+    context.forEach(([label, value]) => {
+      details.append(makeElement('dt', label), makeElement('dd', value));
+    });
+    report.append(details, makeElement('h2', 'Decision factors'));
+    report.append(makeElement('p', 'Importance weights: 0 = not applicable; 1 = lowest; 2 = low; 3 = moderate; 4 = high; 5 = highest.', 'report-prompt'));
+    const table = makeElement('table');
+    const head = makeElement('thead');
+    const headRow = makeElement('tr');
+    ['Decision factor', 'Importance weight'].forEach(text => {
+      const cell = makeElement('th', text);
+      cell.scope = 'col';
+      headRow.append(cell);
+    });
+    head.append(headRow);
+    const body = makeElement('tbody');
+    config.factors.forEach((name, index) => {
+      const row = makeElement('tr');
+      const factor = makeElement('th', `${index + 1}. ${name}`);
+      factor.scope = 'row';
+      row.append(factor, makeElement('td', weightLabels[ratings[index].value] || 'Not rated'));
+      body.append(row);
+    });
+    table.append(head, body);
+    report.append(table, makeElement('h2', 'Student comments and analysis'));
+    report.append(makeElement('p', config.prompt, 'report-prompt'));
+    report.append(makeElement('div', commentsInput.value.trim() ? commentsInput.value : 'No comments entered.', 'report-comments'));
+    report.append(makeElement('p', 'Importance weights express the student’s priorities for the selected AI industry.', 'report-note'));
+  }
+
+  ratings.forEach(select => select.addEventListener('change', updateProgress));
+  document.getElementById('reset-ratings').addEventListener('click', () => {
+    ratings.forEach(select => { select.value = ''; });
+    updateProgress();
+  });
+  document.getElementById('print-button').addEventListener('click', () => {
+    renderPrintReport();
+    window.print();
+  });
+  window.addEventListener('beforeprint', renderPrintReport);
+  updateProgress();
+  document.body.classList.add('ready');
+})();
 </script>
 </body>
 </html>
